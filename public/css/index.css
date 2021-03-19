@@ -8,7 +8,7 @@ html, body {
   box-sizing: border-box;
 }
 
-#chat {
+#Login {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -17,32 +17,55 @@ html, body {
   padding: 2vw;
 }
 
+#SignUp {
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2vw;
+}
+
+#title {
+  font-size: 3.0vw;
+  font-weight: bold;
+  margin-bottom: 2vmax;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#messageError{
+  background-color: #f39b78;
+  width: 40vw;
+  margin-top: 1vw;
+  padding: 0.5vw 2vw;
+  flex-direction: row;
+  display: none;
+}
+
+#messageError p {
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 input {
-  width: 60vw;
+  width: 40vw;
   border: 1px solid #ddd;
-  height: 5vw;
+  height: 3vw;
   padding: 0 2vw;
   font-size: 1.5vw;
+  margin-top: 1vw;
 }
 
 button {
-  width: 60vw;
-  height: 5vw;
+  width: 40vw;
+  height: 3vw;
   font-size: 1.5vw;
   background: #069;
   text-align: center;
-  line-height: 5vw;
+  line-height: 3vw;
   font-weight: bold;
   color: #FFF;
   margin-top: 1vw;
   border: none;
 }
-
-#messages {
-  overflow: auto;
-  width: 60vw;
-  height: 40vw;
-  margin: 2vw 0;
-  border: 1px solid #ddd;
-  padding: 2vw;
-}
+ 

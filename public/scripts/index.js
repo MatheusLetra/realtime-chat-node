@@ -1,38 +1,53 @@
-var socket = io('http://192.168.0.108:3000')
-
-
-function renderMessages(message){
-    $('#messages').append('<div class="message"><strong>' + message.author + '</strong>: ' + message.message + '</div>')
-    var objDiv = document.getElementById("messages");
-    objDiv.scrollTop = objDiv.scrollHeight;
-}
-
-socket.on('previousMessages', function(messages){
-    $('#messages').empty()
-    for (message in messages){
-        renderMessages(message)
-    }
-})
-socket.on('receivedMessage', function(message){
-    renderMessages(message)
-})
-
-$('#chat').submit(function(event){
+$('#Login').submit(function (event) {
     event.preventDefault();
+    var username = $('input[name=username]').val()
+    var password = $('input[name=password]').val()
 
-    var author = $('input[name=username]').val()
-    var message = $('input[name=message]').val()
-
-    if(author.trim() && message.trim()){
-        var messageObject = {
-            author: author,
-            message: message
-        }
-
-        renderMessages(messageObject)
-        socket.emit('sendMessage', messageObject)
+    if (username.trim() && password.trim()) {
+        // var messageError = document.getElementById("messageError")
+        // messageError.style.display = 'none';
     }
     else {
-        alert('Please entry your username and your message!')
+        // var messageError = document.getElementById("messageError")
+        // messageError.style.display = 'block';
+        Alert('Please entry your username and your password!')
     }
 })
+
+$('#SignUp').submit(function (event) {
+    event.preventDefault();
+    var fullName = $('input[name=name]').val()
+    var username = $('input[name=usernameSign]').val()
+    var password = $('input[name=passwordSign]').val()
+
+    if (fullName.trim() && username.trim() && password.trim()) {
+        socket.emit("Sign_Up", {
+            name: fullName,
+            username: username,
+            password: generateHash(password)
+        });
+    }
+    else {
+        Alert('Please entry your Full name and your username and your password!')
+    }
+})
+
+$(document).ready(function () {
+    $("#hideSignUp").click(function (event) {
+        event.preventDefault();
+        document.title = 'Socket.io Chat - Login'
+        const signUp = document.getElementById("SignUp")
+        signUp.style.display = 'none'
+        const login = document.getElementById("Login")
+        login.style.display = 'flex'
+    });
+
+    $("#hideLogin").click(function (event) {
+        event.preventDefault();
+        document.title = 'Socket.io Chat - SignUp'
+        const signUp = document.getElementById("SignUp")
+        signUp.style.display = 'flex'
+        const login = document.getElementById("Login")
+        login.style.display = 'none'
+    });
+});

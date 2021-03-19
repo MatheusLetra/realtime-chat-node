@@ -4,18 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat using Socket.io</title>
+    <title>Socket.io Chat - Login</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js" integrity="sha512-2RDFHqfLZW8IhPRvQYmK9bTLfj/hddxGXQAred2wNZGkrKQkLGj8RCkXfRJPHlDerdHHIzTFaahq4s/P4V6Qig==" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
-    <form id="chat">
-        <input type="text" name="username" placeholder="Type your username here...">
-        <div id="messages"></div>
-        <input type="text" name="message" placeholder="Type your message here...">
-        <button type="submit">Send Message</button>
+    <form id="Login">
+        <h3 id="title">Socket.io Chat - Login</h3>
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <!-- <div id="messageError">
+            <p>Please entry your username and your password!</p>
+        </div> -->
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a id="hideLogin" onclick="hideLogin();" href="">SignUp</a></p>
     </form>
+
+    <form id="SignUp">
+        <h3 id="title">Socket.io Chat - SignUp</h3>
+        <input type="text" name="name" placeholder="Full Name">
+        <input type="text" name="usernameSign" placeholder="Username">
+        <input type="password" name="passwordSign" placeholder="Password">
+        <button type="submit">SignUp</button>
+        <p>Do you have an account? <a id="hideSignUp" href="">Login</a></p>
+    </form>
+
     <script type="text/javascript" src="../scripts/index.js"></script>
 </body>
 </html>

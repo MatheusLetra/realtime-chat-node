@@ -6,4 +6,4 @@ const sequelize = new Sequelize('realtimechat', 'root', 'masterkey', {
     dialect: "mysql"
 });
 
-module.exports = sequelize
+module.exports = {sequelize, Sequelize}

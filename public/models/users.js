@@ -1,4 +1,4 @@
-const sequelize = require('../database/connection')
+const {sequelize, Sequelize} = require('../database/connection')
 
 const users = sequelize.define('users', {
     name: {
@@ -26,11 +26,7 @@ const verifyUsername = async username => {
             username: username
         }
     });
-
-    if (result > 0)
-        return true
-    else
-        return false
+    return (result.count > 0)
 }
 
 module.exports = {createUsersTable, createUser, verifyUsername}

@@ -1,37 +1,45 @@
-const socket = require('../clientSocket/socketIo')
+var socket = io('http://192.168.0.108:3000')
 
-function renderMessages(message){
-    $('#messages').append('<div class="message"><strong>' + message.author + '</strong>: ' + message.message + '</div>')
+function renderMessages(message) {
     var objDiv = document.getElementById("messages");
+    var childrenDiv = document.createElement("div");
+    var strongText = document.createElement("strong")
+    var textAuthor = document.createTextNode(message.author + ': ');
+    var textMessage = document.createTextNode(message.message)
+    strongText.appendChild(textAuthor)
+    childrenDiv.appendChild(strongText);
+    childrenDiv.appendChild(textMessage)
+    childrenDiv.className = 'message'
+    objDiv.appendChild(childrenDiv)
     objDiv.scrollTop = objDiv.scrollHeight;
 }
 
-socket.on('previousMessages', function(messages){
-    $('#messages').empty()
-    for (message in messages){
+socket.on('previousMessages', function (messages) {
+    var objDiv = document.getElementById("messages");
+    objDiv.innerText = ''
+    for (message in messages) {
         renderMessages(message)
     }
 })
-socket.on('receivedMessage', function(message){
+
+socket.on('receivedMessage', function (message) {
     renderMessages(message)
 })
 
-$('#chat').submit(function(event){
-    event.preventDefault();
+function sendMessage() {
+    var userNameObject = document.getElementById('username')
+    var username = userNameObject.innerText
+    var message = document.getElementById('message').value;
 
-    var author = $('input[name=username]').val()
-    var message = $('input[name=message]').val()
-
-    if(author.trim() && message.trim()){
-        var messageObject = {
-            author: author,
-            message: message
-        }
-
-        renderMessages(messageObject)
+    var messageObject = {
+        author: username,
+        message: message
+    }
+    if (messageObject.message !== '') {
         socket.emit('sendMessage', messageObject)
+        renderMessages(messageObject)
+    } else {
+        alert('Please entry your message!')
+        document.getElementById('message').focus();
     }
-    else {
-        alert('Please entry your username and your message!')
-    }
-})
+}

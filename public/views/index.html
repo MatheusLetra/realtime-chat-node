@@ -10,22 +10,19 @@
     <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
-    <form id="Login">
+    <form id="Login" action="/" method="POST">
         <h3 id="title">Socket.io Chat - Login</h3>
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <!-- <div id="messageError">
-            <p>Please entry your username and your password!</p>
-        </div> -->
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
         <button type="submit">Login</button>
-        <p>Don't have an account? <a id="hideLogin" onclick="hideLogin();" href="">SignUp</a></p>
+        <p>Don't have an account? <a id="hideLogin" href="">SignUp</a></p>
     </form>
 
-    <form id="SignUp">
+    <form id="SignUp" action="/register" method="POST">
         <h3 id="title">Socket.io Chat - SignUp</h3>
-        <input type="text" name="name" placeholder="Full Name">
-        <input type="text" name="usernameSign" placeholder="Username">
-        <input type="password" name="passwordSign" placeholder="Password">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="text" name="usernameSign" placeholder="Username" required>
+        <input type="password" name="passwordSign" placeholder="Password" required>
         <button type="submit">SignUp</button>
         <p>Do you have an account? <a id="hideSignUp" href="">Login</a></p>
     </form>

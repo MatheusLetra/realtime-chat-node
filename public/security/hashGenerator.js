@@ -4,4 +4,4 @@ const generateHash = (stringKey) => {
     return MD5(stringKey).toString();
 }
 
-modules.exports = { generateHash };
+module.exports = { generateHash };

@@ -10,12 +10,12 @@
     <link rel="stylesheet" type="text/css" href="../css/chat.css">
 </head>
 <body>
-    <form id="chat">
-        <input type="text" name="username" placeholder="Type your username here...">
+    <div id="chat">
+        <h2 id="username"><%= username %></h2>
         <div id="messages"></div>
-        <input type="text" name="message" placeholder="Type your message here...">
-        <button type="submit">Send Message</button>
-    </form>
+        <input type="text" id="message" name="message" placeholder="Type your message here..." required>
+        <button onClick="sendMessage()">Send Message</button>
+    </div>
     <script type="text/javascript" src="../scripts/chat.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const {sequelize, Sequelize} = require('../database/connection')
+const { sequelize, Sequelize } = require('../database/connection')
 
 const users = sequelize.define('users', {
     name: {
@@ -16,8 +16,22 @@ const createUsersTable = _ => {
     users.sync({ force: true })
 }
 
-const createUser = user => {
-    users.create(user)
+const createUser = async user => {
+    let result = {}
+    try {
+        await users.create(user)
+        result = {
+            statusCode: '201',
+            message: 'User Created'
+        }
+    }
+    catch (error) {
+        result = {
+            statusCode: '500',
+            message: error.message
+        }
+    }
+    return result;
 }
 
 const verifyUsername = async username => {
@@ -29,4 +43,18 @@ const verifyUsername = async username => {
     return (result.count > 0)
 }
 
-module.exports = {createUsersTable, createUser, verifyUsername}
+const verifyLogin = async (username, password) => {
+    const result = await users.findAndCountAll({
+        where: {
+            username: username,
+            password: password
+        }
+    });
+    if (result.count > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+module.exports = { createUsersTable, createUser, verifyUsername, verifyLogin }

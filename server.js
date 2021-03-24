@@ -33,7 +33,7 @@ app.post('/', (req, res) => {
             req.session.username = user
             res.render('chat.html', { username: user })
         } else {
-            res.send('<h2>User Not Found </h2>')
+            res.render('userNotFound.html')
         }
     }
     const { username, password } = req.body

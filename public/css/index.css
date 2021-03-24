@@ -33,18 +33,9 @@ html, body {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-#messageError{
-  background-color: #f39b78;
-  width: 40vw;
-  margin-top: 1vw;
-  padding: 0.5vw 2vw;
-  flex-direction: row;
-  display: none;
-}
-
-#messageError p {
+#userExists{
+  color: rgb(255, 20, 20);
   font-weight: bold;
-  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 input {

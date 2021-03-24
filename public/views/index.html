@@ -7,6 +7,7 @@
     <title>Socket.io Chat - Login</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js" integrity="sha512-2RDFHqfLZW8IhPRvQYmK9bTLfj/hddxGXQAred2wNZGkrKQkLGj8RCkXfRJPHlDerdHHIzTFaahq4s/P4V6Qig==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js" integrity="sha512-vRqhAr2wsn+/cSsyz80psBbCcqzz2GTuhGk3bq3dAyytz4J/8XwFqMjiAGFBj+WM95lHBJ9cDf87T3P8yMrY7A==" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
@@ -21,12 +22,12 @@
     <form id="SignUp" action="/register" method="POST">
         <h3 id="title">Socket.io Chat - SignUp</h3>
         <input type="text" name="name" placeholder="Full Name" required>
+        <p id="userExists">Username already exists</p>
         <input type="text" name="usernameSign" placeholder="Username" required>
         <input type="password" name="passwordSign" placeholder="Password" required>
         <button type="submit">SignUp</button>
         <p>Do you have an account? <a id="hideSignUp" href="">Login</a></p>
     </form>
-
     <script type="text/javascript" src="../scripts/index.js"></script>
 </body>
 </html>

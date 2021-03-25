@@ -33,10 +33,6 @@ html, body {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-#userExists{
-  color: rgb(255, 20, 20);
-  font-weight: bold;
-}
 
 input {
   width: 40vw;

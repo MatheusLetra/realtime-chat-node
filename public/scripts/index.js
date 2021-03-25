@@ -1,4 +1,3 @@
-// const {verifyUsername} = require('../models/users')
 function onHideSignUp(event) {
     event.preventDefault();
     document.title = 'Socket.io Chat - Login'
@@ -18,6 +17,7 @@ function onHideLogin(event) {
 }
 
 async function verifyUser(username){
+    var userExists = document.getElementById('userExists')
     let result = await verifyUsername(username)
     if (result === true){
         
@@ -34,12 +34,6 @@ hideLogin.addEventListener('click', function (event) {
     onHideLogin(event);
 })
 
-const usernameSign = document.getElementsByName('usernameSign')
-usernameSign.addEventListener('keyup',function(event){
-    event.preventDefault();
-    var userInput = usernameSign.value
-    verifyUser(userInput)
-})
 
 
 

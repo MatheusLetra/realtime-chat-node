@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  
+  #UserAlreadyExists {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2vw;
+  }
+  
+  #title {
+    font-size: 3.0vw;
+    font-weight: bold;
+    margin-bottom: 2vmax;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }

@@ -2,7 +2,7 @@ const express = require('express')
 const session = require('express-session');
 const path = require('path')
 const { createUser, verifyUsername, verifyLogin } = require('./public/models/users')
-const { createMessagesTable, createMessage, getAllMessages } = require('./public/models/messages')
+const { createMessage, getAllMessages } = require('./public/models/messages')
 const { generateHash } = require('./public/security/hashGenerator')
 
 
@@ -41,13 +41,28 @@ app.post('/', (req, res) => {
 })
 
 app.post('/register', (req, res) => {
-    async function Register(params) {
-        let response = await createUser(params)
-        if (response.statusCode === '201') {
-            req.session.username = params.username
-            res.redirect('/')
+    async function verifyUser(username) {
+        let result = await verifyUsername(username)
+        console.log(result)
+        if (result === true) {
+            return true
         } else {
-            res.send('<h3>' + response.message + '</h3')
+            return false
+        }
+    }
+
+    async function Register(params) {
+        let userExists = await verifyUser(params.username)
+        if (userExists) {
+            res.render('userAlreadyExists.html')
+        } else {
+            let response = await createUser(params)
+            if (response.statusCode === '201') {
+                req.session.username = params.username
+                res.redirect('/')
+            } else {
+                res.send('<h3>' + response.message + '</h3')
+            }
         }
     }
 
@@ -68,15 +83,13 @@ async function pushMessage(message) {
     messages.push(message)
 }
 
-async function getPreviousMessages() {
-    await getAllMessages()
-    messages = []
+async function getPreviousMessages(socket) {
+    messages = await getAllMessages()
+    socket.emit('previousMessages', messages)
 }
 
 io.on('connection', socket => {
-    getPreviousMessages()
-    socket.emit('previousMessages', messages)
-
+    getPreviousMessages(socket)
     socket.on('sendMessage', data => {
         pushMessage(data)
         socket.broadcast.emit('receivedMessage', data)

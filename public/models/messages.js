@@ -33,7 +33,9 @@ const createMessage = async message => {
 
 const getAllMessages = async _ =>{
     let result = await messages.findAll({ limit: 10000000 });
-    return JSON.stringify(result)
+    result = JSON.stringify(result)
+    result = JSON.parse(result)
+    return result
 }
 
 
